@@ -14,7 +14,7 @@ const TodoSearch = ({ searchValue, setSearchValue }) => {
         onChange={onChange}
         value={searchValue}
         className="search"
-        placeholder="Tu TODO"
+        placeholder="To-TODO"
       />
     </div>
   );

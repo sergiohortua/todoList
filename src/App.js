@@ -25,21 +25,39 @@ const data = [
 
 function App() {
   const [todos, setTodos] = React.useState(data);
-  const [searchValue, setSearchValue] = React.useState('');
+  const [searchValue, setSearchValue] = React.useState("");
 
   const completedTodos = todos.filter((todo) => !!todo.completed).length; // !-> significa negado(negativo-false) , !!-> significa (-*-) afirmativo-true
   const totalTodos = todos.length;
 
- 
   let searchedTodos = [];
 
-  (!searchValue.length >=1)
+  !searchValue.length >= 1
     ? (searchedTodos = todos)
     : (searchedTodos = todos.filter((todo) => {
         const todoText = todo.text.toLowerCase();
         const searchText = searchValue.toLowerCase();
-        return todoText.includes(searchText)
+        return todoText.includes(searchText);
       }));
+
+  const completeTodo = (text) => {
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = (text) => {
+    // const todoIndex = todos.findIndex((todo) => todo.text === text);
+    const newTodos = [...todos].filter(item => item.text !== text);
+    // const newArray=newTodos.filter(item => item.text !== text)
+    // console.log(todoIndex);
+    // console.log(text);
+    // console.log(newTodos);
+    // console.log(newArray);
+    // newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+  };
 
   return (
     <React.Fragment>
@@ -48,7 +66,12 @@ function App() {
         <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
         <TodoList>
           {searchedTodos.map((item) => (
-            <TodoItem key={item.text} {...item} />
+            <TodoItem
+              key={item.text}
+              {...item}
+              onComplete={() => completeTodo(item.text)}
+              onDelete={()=>deleteTodo(item.text)}
+            />
           ))}
         </TodoList>
         <CreateTodoButton />
