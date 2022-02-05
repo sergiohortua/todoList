@@ -1,10 +1,6 @@
-import React, { useState } from "react";
-import { TodoCounter } from "./components/TodoCounter";
-import { TodoSearch } from "./components/TodoSearch";
-import { TodoList } from "./components/TodoList";
-import { TodoItem } from "./components/TodoItem";
-import { CreateTodoButton } from "./components/CreateTodoButton";
-import "./styles/Root.css";
+import React from "react";
+import { AppUI } from "./AppUI";
+
 
 const data = [
   { text: "pararse", completed: true },
@@ -60,23 +56,15 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <div className="root">
-        <TodoCounter total={totalTodos} completed={completedTodos} />
-        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-        <TodoList>
-          {searchedTodos.map((item) => (
-            <TodoItem
-              key={item.text}
-              {...item}
-              onComplete={() => completeTodo(item.text)}
-              onDelete={()=>deleteTodo(item.text)}
-            />
-          ))}
-        </TodoList>
-        <CreateTodoButton />
-      </div>
-    </React.Fragment>
+    <AppUI
+    totalTodos={totalTodos} 
+    completedTodos={completedTodos} 
+    searchValue={searchValue} 
+    setSearchValue={setSearchValue}
+    searchedTodos={searchedTodos}
+    completeTodo={completeTodo}
+    deleteTodo={deleteTodo}
+    />
   );
 }
 
