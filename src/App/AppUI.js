@@ -15,6 +15,8 @@ const AppUI = (props) => {
     searchedTodos,
     completeTodo,
     deleteTodo,
+    loading,
+    error,
   } = props;
   return (
     <React.Fragment>
@@ -22,6 +24,10 @@ const AppUI = (props) => {
         <TodoCounter total={totalTodos} completed={completedTodos} />
         <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
         <TodoList>
+          {error && <p>ERROR</p>}
+          {loading && <p>Cargando...</p>}
+          {(!loading && !searchedTodos.length) && <p>Crea tu primer TODO</p>}
+
           {searchedTodos.map((item) => (
             <TodoItem
               key={item.text}
