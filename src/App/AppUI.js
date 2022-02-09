@@ -5,6 +5,7 @@ import { TodoList } from "../components/TodoList";
 import { TodoItem } from "../components/TodoItem";
 import { CreateTodoButton } from "../components/CreateTodoButton";
 import { TodoContext } from "../TodoContext";
+import { Modal } from "../Modal";
 import "../styles/Root.css";
 
 const AppUI = (props) => {
@@ -29,7 +30,7 @@ const AppUI = (props) => {
             />
           ))}
         </TodoList>
-        )}
+        <Modal>El Modal</Modal>
         <CreateTodoButton />
       </div>
     </React.Fragment>
