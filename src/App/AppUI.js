@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { TodoCounter } from "../components/TodoCounter";
 import { TodoSearch } from "../components/TodoSearch";
 import { TodoList } from "../components/TodoList";
@@ -6,6 +6,7 @@ import { TodoItem } from "../components/TodoItem";
 import { CreateTodoButton } from "../components/CreateTodoButton";
 import { TodoContext } from "../TodoContext";
 import { Modal } from "../Modal";
+import { TodoForm } from "../TodoForm";
 import "../styles/Root.css";
 
 const AppUI = (props) => {
@@ -30,7 +31,7 @@ const AppUI = (props) => {
             />
           ))}
         </TodoList>
-        {openModal && <Modal>{searchedTodos[0]?.text}</Modal>}
+        {openModal && <Modal><TodoForm/></Modal>}
         <CreateTodoButton />
       </div>
     </React.Fragment>
