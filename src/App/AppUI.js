@@ -9,7 +9,7 @@ import { Modal } from "../Modal";
 import "../styles/Root.css";
 
 const AppUI = (props) => {
-  const { error, loading, searchedTodos, completeTodo, deleteTodo } =
+  const { error, loading, searchedTodos, completeTodo, deleteTodo, openModal } =
     React.useContext(TodoContext);
   return (
     <React.Fragment>
@@ -30,7 +30,7 @@ const AppUI = (props) => {
             />
           ))}
         </TodoList>
-        <Modal>El Modal</Modal>
+        {openModal && <Modal>{searchedTodos[0]?.text}</Modal>}
         <CreateTodoButton />
       </div>
     </React.Fragment>
